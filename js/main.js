@@ -66,7 +66,7 @@ let T0 = performance.now();
 
 const el = {
   sceneWrap: $('#scene-wrap'), sc: $('#sc'), glow: $('#glow'), spiral: $('#spiral'),
-  scan: $('#scan'), grain: $('#grain'), vig: $('#vig'), flash: $('#flash'),
+  scan: $('#scan'), grain: $('#grain'), vig: $('#vig'),
   paper: $('#paper'), hero: $('#hero'), head: $('#head'), menu: $('#menu'),
   msg: $('#msg-txt'), figtag: $('#figtag'), title: $('#title'),
 };
@@ -78,7 +78,6 @@ function applyLook() {
   el.sceneWrap.style.filter = f;
   el.paper.style.filter = f;
   el.glow.style.opacity = 1;
-  el.grain.style.opacity = (50 / 110).toFixed(3);
 }
 
 /* ============================= ГЕРОЙ: ГЕОМЕТРИЯ ============================= */
@@ -139,14 +138,13 @@ function resetScenes() {
 }
 resetScenes();
 
-let cur = 0, sStart = 0, glitchT = -9, flashT = -9, fadeT0 = -9;
+let cur = 0, sStart = 0, glitchT = -9, fadeT0 = -9;
 let figNameSlot = null;
 
 function setScene(i) {
   cur = mod(i, SCENE_N);
   sStart = t;
   glitchT = t;
-  flashT = t;
   sceneFns[0] = makeLorenz(2400);
   if (figNameSlot !== null) {
     scr.set(el.figtag, `РИС. ${cur + 1}/7 · ${FIG_NAMES[cur]}`, 1.7);
@@ -250,7 +248,6 @@ function dive(dir, target) {
   diveDir = dir;
   diveT0 = t;
   msgTarget = 0;
-  flashT = t;
   glitchT = t;
   const items = $$('#menu .it');
   items.forEach((it, i) => {
@@ -390,6 +387,7 @@ const glowCtx = el.glow.getContext('2d');
 const spCtx = el.spiral.getContext('2d');
 
 let flickerPrev = -1;
+let grainPrev = '';
 
 function flickerAlpha() {
   if (REDUCED) return 1;   /* МЕРЦАНИЕ: уважаем prefers-reduced-motion */
@@ -471,10 +469,15 @@ function frame(now) {
     app.style.opacity = fa.toFixed(3);
     flickerPrev = fa;
   }
-  const fp = clamp((t - flashT) / 0.45, 0, 1);
-  const pq = Math.floor(fp * 6) / 6;
-  el.flash.style.opacity = (pq < 0.3 ? 0.16 * (1 - pq / 0.3)
-    : pq < 0.45 ? 0.08 * (1 - (pq - 0.3) / 0.15) : 0).toFixed(3);
+
+  /* зерно: полное в меню, к разделам угасает почти до нуля —
+     текст читается, скриншоты остаются чистыми */
+  const gf = clamp(scrollY / (H * 0.7), 0, 1);
+  const gOp = (0.455 * (1 - gf) + 0.04 * gf).toFixed(3);
+  if (gOp !== grainPrev) {
+    el.grain.style.opacity = gOp;
+    grainPrev = gOp;
+  }
 
   /* виньетка экрана загрузки проявляется при прокрутке */
   el.vig.style.opacity = clamp(scrollY / (H * 0.8), 0, 1).toFixed(3);

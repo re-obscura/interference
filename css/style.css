@@ -657,14 +657,6 @@ footer {
   pointer-events: none;
 }
 
-#flash {
-  position: fixed;
-  inset: 0;
-  z-index: 52;
-  background: #fff;
-  opacity: 0;
-  pointer-events: none;
-}
 
 /* ================= ЛАЙТБОКС ================= */
 
