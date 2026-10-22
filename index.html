@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>interference — одиночный FPS · reobscura</title>
+<meta name="description" content="Официальный сайт interference: дорожная карта, кадры из игры, поддержка разработчика и контакты. Тёмный процедурный FPS от reobscura.">
+<meta property="og:title" content="interference — одиночный FPS">
+<meta property="og:description" content="Дорожная карта, медиа, поддержка и контакты. Порт главного меню игры — те же сцены, спираль и CRT.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/og.jpg">
+<meta name="theme-color" content="#070708">
+<link rel="icon" href="img/favicon-32.png" sizes="32x32">
+<link rel="icon" href="img/favicon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="img/favicon-180.png">
+<link rel="preload" href="fonts/DotGothic16.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ================= ГЛАВНОЕ МЕНЮ (порт main_menu.gd) ================= -->
+  <header id="hero">
+    <div id="scene-wrap">
+      <canvas id="sc"></canvas>
+      <canvas id="glow"></canvas>
+    </div>
+    <canvas id="spiral"></canvas>
+    <div id="shade"></div>
+    <div id="vig-hero"></div>
+
+    <div class="ui" id="hero-ui">
+      <div id="head">
+        <h1 id="title">interference</h1>
+        <div id="tag">REOBSCURA · ОДИНОЧНЫЙ FPS · В РАЗРАБОТКЕ</div>
+      </div>
+
+      <nav id="menu" aria-label="Разделы">
+        <a class="it" href="#about"    data-hint="что это и почему так темно"><span class="lab">ОБ ИГРЕ</span><span class="cur" aria-hidden="true"></span></a>
+        <a class="it" href="#roadmap"  data-hint="терминал погрузки · шаги до релиза"><span class="lab">ДОРОЖНАЯ КАРТА</span><span class="cur" aria-hidden="true"></span></a>
+        <a class="it" href="#media"    data-hint="кадры из сборок · без цветокоррекции"><span class="lab">МЕДИА</span><span class="cur" aria-hidden="true"></span></a>
+        <a class="it" href="#support"  data-hint="донаты превращаются в часы разработки"><span class="lab">ПОДДЕРЖАТЬ</span><span class="cur" aria-hidden="true"></span></a>
+        <a class="it" href="#contacts" data-hint="почта · телеграм · пресса"><span class="lab">КОНТАКТЫ</span><span class="cur" aria-hidden="true"></span></a>
+        <div id="msg">&gt; <span id="msg-txt"></span></div>
+      </nav>
+
+      <div id="buildtag">сборка пролога · октябрь 2026</div>
+      <div id="figtag" aria-live="off"></div>
+    </div>
+  </header>
+
+  <!-- ================= РАЗДЕЛЫ (стиль экрана загрузки) ================= -->
+  <main id="paper">
+
+    <section class="sec" id="about">
+      <div class="sec-head">
+        <div>
+          <div class="brand">interference</div>
+          <div class="sec-tag">ЧБ-ТЕРМИНАЛ · ОБ ИГРЕ</div>
+        </div>
+        <div class="sec-right">
+          <div class="t-plus">T+   0.0</div>
+          <a class="to-menu" href="#hero">▲ МЕНЮ</a>
+        </div>
+      </div>
+      <h2 class="sec-title"><span class="txt" data-scr>ОБ ИГРЕ</span><span class="cur" aria-hidden="true"></span></h2>
+
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="lead" data-scr>интерференция — наложение волн. когда сигналов слишком много, из шума проступает картина. interference — об том, что проступает.</p>
+          <p data-scr>одиночный шутер от первого лица. тёмные промзоны, штормовые крыши и снег; кинематографичный свет, процедурное насилие и город, где каждый выстрел оставляет след — в стене, в теле, в памяти уровня.</p>
+          <p data-scr>каждый враг собран из костей по-настоящему: попадания считаются по зонам, кровь летит по баллистике и въедается в поверхности, тела падают активными рагдоллами и рассекаются по скелету. никаких заранее заготовленных «смертей» — только физика и геометрия.</p>
+          <p data-scr>игра содержит сцены насилия, жестокости и крови, мерцающие изображения и повторяющиеся визуальные паттерны. 18+.</p>
+
+          <dl class="facts">
+            <div class="fact" data-scr><dt>ЖАНР</dt><dd>одиночный FPS</dd></div>
+            <div class="fact" data-scr><dt>ДВИЖОК</dt><dd>godot 4.7 · forward+</dd></div>
+            <div class="fact" data-scr><dt>ПЛАТФОРМЫ</dt><dd>linux · android</dd></div>
+            <div class="fact" data-scr><dt>СТАТУС</dt><dd>вертикальный срез · пролог в работе</dd></div>
+            <div class="fact" data-scr><dt>ЯЗЫК</dt><dd>русский</dd></div>
+            <div class="fact" data-scr><dt>ВОЗРАСТ</dt><dd>18+</dd></div>
+          </dl>
+        </div>
+
+        <aside class="about-sys">
+          <h3 data-scr>СИСТЕМЫ · ПРОГРЕСС</h3>
+          <p class="note" data-scr>оценки автора, октябрь 2026</p>
+          <div id="sys"></div>
+        </aside>
+      </div>
+
+      <figure class="wide-shot">
+        <img src="img/shots/photo_20261017_230445_989.webp" alt="Склад: дымка по глубине кадра" loading="lazy">
+        <figcaption data-scr>· кадр из игры · сборка октября · без цветокоррекции</figcaption>
+      </figure>
+    </section>
+
+    <section class="sec" id="roadmap">
+      <div class="sec-head">
+        <div>
+          <div class="brand">interference</div>
+          <div class="sec-tag">ЧБ-ТЕРМИНАЛ · ДОРОЖНАЯ КАРТА</div>
+        </div>
+        <div class="sec-right">
+          <div class="t-plus">T+   0.0</div>
+          <a class="to-menu" href="#hero">▲ МЕНЮ</a>
+        </div>
+      </div>
+      <h2 class="sec-title"><span class="txt" data-scr>ДОРОЖНАЯ КАРТА</span><span class="cur" aria-hidden="true"></span></h2>
+
+      <div class="road-grid">
+        <div class="road-left">
+          <div class="road-bar-area">
+            <div class="road-step" id="road-step">→ пролог: полный проход и полировка</div>
+            <div class="road-count" id="road-count">ШАГ 04 / 07</div>
+            <div class="hairbar"><i id="hairbar-fill"></i><em class="notches" id="hairbar-notches"></em></div>
+            <div class="road-pct" id="road-pct">43%</div>
+          </div>
+          <div id="road-log" aria-label="Шаги дорожной карты"></div>
+        </div>
+        <div class="road-right">
+          <canvas id="field" aria-hidden="true"></canvas>
+          <div class="field-caption" id="field-cap">РИС. 1/7 · АТТРАКТОР ЛОРЕНЦА</div>
+          <canvas id="mini-spiral" aria-hidden="true"></canvas>
+          <div class="mini-note">общий прогресс · точка бежит по золотой спирали</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="media">
+      <div class="sec-head">
+        <div>
+          <div class="brand">interference</div>
+          <div class="sec-tag">ЧБ-ТЕРМИНАЛ · МЕДИА</div>
+        </div>
+        <div class="sec-right">
+          <div class="t-plus">T+   0.0</div>
+          <a class="to-menu" href="#hero">▲ МЕНЮ</a>
+        </div>
+      </div>
+      <h2 class="sec-title"><span class="txt" data-scr>МЕДИА</span><span class="cur" aria-hidden="true"></span></h2>
+      <div class="gallery" id="gallery"></div>
+    </section>
+
+    <section class="sec" id="support">
+      <div class="sec-head">
+        <div>
+          <div class="brand">interference</div>
+          <div class="sec-tag">ЧБ-ТЕРМИНАЛ · ПОДДЕРЖАТЬ</div>
+        </div>
+        <div class="sec-right">
+          <div class="t-plus">T+   0.0</div>
+          <a class="to-menu" href="#hero">▲ МЕНЮ</a>
+        </div>
+      </div>
+      <h2 class="sec-title"><span class="txt" data-scr>ПОДДЕРЖАТЬ</span><span class="cur" aria-hidden="true"></span></h2>
+
+      <p class="lead" data-scr>interference делает один человек — код, арт, звук и этот сайт. донаты не сжимают время, но покупают его: ассеты, инструменты и возможность чаще заниматься игрой.</p>
+
+      <!-- ЗАМЕНИТЕ ссылки на реальные: href + текст -->
+      <div class="sup-primary">
+        <a class="it it-big" id="sup-main" href="#" target="_blank" rel="noopener">
+          <span class="lab">ПОДДЕРЖАТЬ НА BOOSTY</span><span class="cur" aria-hidden="true"></span>
+        </a>
+        <p class="note" data-scr>подписка или разовый перевод · самые полезные деньги</p>
+      </div>
+
+      <div class="sup-grid">
+        <a class="sup-card" href="#" target="_blank" rel="noopener">
+          <div class="sup-num">01 · BOOSTY</div>
+          <div class="sup-desc">ежемесячная поддержка, закрытые посты о разработке</div>
+          <div class="sup-go">ОТКРЫТЬ →</div>
+        </a>
+        <a class="sup-card" href="#" target="_blank" rel="noopener">
+          <div class="sup-num">02 · ЮMONEY</div>
+          <div class="sup-desc">разовый перевод на карту, без регистрации</div>
+          <div class="sup-go">ОТКРЫТЬ →</div>
+        </a>
+        <a class="sup-card" href="#" target="_blank" rel="noopener">
+          <div class="sup-num">03 · КРИПТА</div>
+          <div class="sup-desc">USDT / TON — адрес в закрепе телеграм-канала</div>
+          <div class="sup-go">ОТКРЫТЬ →</div>
+        </a>
+      </div>
+      <p class="note" data-scr>даже репост глазами разработчика — тоже поддержка.</p>
+    </section>
+
+    <section class="sec" id="contacts">
+      <div class="sec-head">
+        <div>
+          <div class="brand">interference</div>
+          <div class="sec-tag">ЧБ-ТЕРМИНАЛ · КОНТАКТЫ</div>
+        </div>
+        <div class="sec-right">
+          <div class="t-plus">T+   0.0</div>
+          <a class="to-menu" href="#hero">▲ МЕНЮ</a>
+        </div>
+      </div>
+      <h2 class="sec-title"><span class="txt" data-scr>КОНТАКТЫ</span><span class="cur" aria-hidden="true"></span></h2>
+
+      <!-- ЗАМЕНИТЕ адреса на реальные -->
+      <div class="contacts">
+        <button class="crow" type="button" data-copy="hello@reobscura.dev">
+          <span class="clab">ПОЧТА</span><span class="cval">hello@reobscura.dev</span><span class="cact">СКОПИРОВАТЬ</span>
+        </button>
+        <a class="crow" href="https://t.me/reobscura" target="_blank" rel="noopener">
+          <span class="clab">ТЕЛЕГРАМ</span><span class="cval">@reobscura</span><span class="cact">ОТКРЫТЬ →</span>
+        </a>
+        <a class="crow" href="https://github.com/re-obscura" target="_blank" rel="noopener">
+          <span class="clab">GITHUB</span><span class="cval">github.com/re-obscura</span><span class="cact">ОТКРЫТЬ →</span>
+        </a>
+        <a class="crow" href="#" target="_blank" rel="noopener">
+          <span class="clab">ITCH.IO</span><span class="cval">reobscura.itch.io</span><span class="cact">ОТКРЫТЬ →</span>
+        </a>
+      </div>
+      <p class="note" data-scr>для прессы: превью-сборки и материалы — по почте, тема «press · interference».</p>
+    </section>
+
+    <footer>
+      <div class="f-line" data-scr>© 2026 reobscura · interference</div>
+      <div class="f-line dim" data-scr>сайт — прямой порт главного меню игры: те же фоновые сцены, золотая спираль и CRT-слои · шрифт DotGothic16</div>
+      <div class="f-line dim" data-scr>сайт содержит мерцающие изображения, скан-линии и повторяющиеся паттерны · 18+</div>
+      <div class="f-line dim" data-scr>клавиши: ↑ ↓ · enter · [ ] — сцены · 1–7 — выбрать сцену</div>
+    </footer>
+  </main>
+
+  <!-- ================= CRT-слои ================= -->
+  <div id="scan" aria-hidden="true"></div>
+  <canvas id="grain" aria-hidden="true"></canvas>
+  <div id="vig" aria-hidden="true"></div>
+  <div id="flash" aria-hidden="true"></div>
+
+  <!-- ================= НАД CRT ================= -->
+  <div id="lightbox" hidden>
+    <img id="lb-img" alt="">
+    <div id="lb-cap"></div>
+    <div id="lb-hint">клик — закрыть</div>
+  </div>
+</div>
+
+<script src="js/fx.js"></script>
+<script src="js/scenes.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
