@@ -95,7 +95,7 @@
       let chunksDone = 0;
       for (const c of CHUNKS) {
         const b = await fetchChunk(c, (got, total) => {
-          const p = (chunksDone + got / Math.max(total, 1)) / CHUNKS.length;
+          const p = Math.min((chunksDone + got / Math.max(total, 1)) / CHUNKS.length, 1);
           fill.style.width = (p * 100).toFixed(1) + '%';
           status.textContent = 'погрузка пак ' + ((bytesDone + got) / 1048576 | 0) + ' из 145 МБ';
         });
