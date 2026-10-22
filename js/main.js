@@ -490,6 +490,7 @@ function frame(now) {
   if ((frameCount & 7) === 0) updateTPlus();
 
   if (roadVisible) roadFrame(dt);
+  trailerFrame();
 
   requestAnimationFrame(frame);
 }
@@ -895,11 +896,97 @@ $$('.crow[data-copy]').forEach(b => {
   });
 });
 
+
+/* ============================= ТРЕЙЛЕР-ЗАГЛУШКА ============================= */
+/* В рамке трейлера до готовности ролика живёт та же сцена шума, что за меню,
+   уменьшенная и затемнённая. Когда ролик будет готов — замените figure.trailer
+   на <video>. */
+
+let trailerSink = null;
+let trailerVisible = false;
+
+function initTrailer() {
+  const cv = document.getElementById('trailer-cv');
+  if (!cv) return;
+  const trailerIO = new IntersectionObserver(en => {
+    trailerVisible = en[0].isIntersecting;
+  }, { threshold: 0.05 });
+  trailerIO.observe(cv);
+  trailerSink = { cv, ctx: cv.getContext('2d'), env: null };
+  sizeTrailer();
+  addEventListener('resize', sizeTrailer);
+}
+
+function sizeTrailer() {
+  const s = trailerSink;
+  if (!s) return;
+  const r = s.cv.getBoundingClientRect();
+  if (r.width < 4) return;
+  s.cv.width = Math.round(r.width * DPR);
+  s.cv.height = Math.round(r.width * 9 / 16 * DPR);
+  const w = r.width, h = r.width * 9 / 16;
+  s.env = {
+    cx: w * 0.5, cy: h * 0.5,
+    R: Math.min(w, h) * 0.36,
+  };
+  s.env.proj = makeProj(s.env.cx, s.env.cy, s.env.R);
+}
+
+function trailerFrame() {
+  const s = trailerSink;
+  if (!s || !s.env || !trailerVisible) return;
+  const c = s.ctx;
+  c.setTransform(DPR, 0, 0, DPR, 0, 0);
+  const w = s.cv.width / DPR, h = s.cv.height / DPR;
+  c.fillStyle = '#000';
+  c.fillRect(0, 0, w, h);
+  c.globalAlpha = 0.7;
+  sceneFns[cur](new CanvasSink(c), t, s.env);
+  c.globalAlpha = 1;
+}
+
+/* ============================= ПОЛИГОН ============================= */
+
+const polyState = { frame: null, timer: null };
+
+function polyLaunch() {
+  const stage = document.getElementById('poly-stage');
+  const live = document.getElementById('poly-live');
+  if (polyState.frame) return;
+  const f = document.createElement('iframe');
+  f.src = 'range/index.html';
+  f.allow = 'autoplay; fullscreen; gamepad';
+  f.title = 'interference · полигон';
+  stage.appendChild(f);
+  live.hidden = false;
+  polyState.frame = f;
+  polyState.timer = setInterval(() => {
+    try {
+      const w = f.contentWindow;
+      const s = w.rangeShot || 0;
+      const h = w.rangeHit || 0;
+      document.getElementById('poly-stats').textContent =
+        'выстрелов ' + s + ' · попаданий ' + h;
+    } catch (e) { /* полигон ещё грузится */ }
+  }, 700);
+}
+
+function polyStop() {
+  if (!polyState.frame) return;
+  clearInterval(polyState.timer);
+  polyState.frame.remove();
+  polyState.frame = null;
+  document.getElementById('poly-live').hidden = true;
+}
+
 /* ============================= СТАРТ ============================= */
 
 buildSys();
 buildGallery();
 applyLook();
+initTrailer();
+document.getElementById('poly-launch').addEventListener('click', polyLaunch);
+document.getElementById('poly-close').addEventListener('click', polyStop);
 heroResize();
 addEventListener('resize', () => { heroResize(); if (roadBuilt) fieldInit(); });
 document.fonts && document.fonts.ready.then(layoutMenu);

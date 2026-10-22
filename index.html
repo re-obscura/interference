@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>interference — одиночный FPS · reobscura</title>
-<meta name="description" content="Официальный сайт interference: дорожная карта, кадры из игры, поддержка разработчика и контакты. Тёмный процедурный FPS от reobscura.">
+<meta name="description" content="Официальный сайт interference: играбельный полигон с кровью и рагдоллами прямо в браузере, дорожная карта, медиа и поддержка. Тёмный процедурный FPS от reobscura.">
 <meta property="og:title" content="interference — одиночный FPS">
-<meta property="og:description" content="Дорожная карта, медиа, поддержка и контакты. Порт главного меню игры — те же сцены, спираль и CRT.">
+<meta property="og:description" content="Играбельный полигон с кровью и рагдоллами в браузере, дорожная карта, медиа и поддержка. Порт главного меню игры — те же сцены, спираль и CRT.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="img/og.jpg">
 <meta name="theme-color" content="#070708">
@@ -36,11 +36,12 @@
       </div>
 
       <nav id="menu" aria-label="Разделы">
-        <a class="it" href="#about"    data-hint="что это и почему так темно"><span class="lab">ОБ ИГРЕ</span><span class="cur" aria-hidden="true"></span></a>
+        <a class="it" href="#about"    data-hint="трейлер · три причины играть · системы"><span class="lab">ОБ ИГРЕ</span><span class="cur" aria-hidden="true"></span></a>
+        <a class="it" href="#polygon"  data-hint="кровь и рагдоллы прямо в браузере"><span class="lab">ПОЛИГОН</span><span class="cur" aria-hidden="true"></span></a>
         <a class="it" href="#roadmap"  data-hint="терминал погрузки · шаги до релиза"><span class="lab">ДОРОЖНАЯ КАРТА</span><span class="cur" aria-hidden="true"></span></a>
         <a class="it" href="#media"    data-hint="кадры из сборок · без цветокоррекции"><span class="lab">МЕДИА</span><span class="cur" aria-hidden="true"></span></a>
         <a class="it" href="#support"  data-hint="донаты превращаются в часы разработки"><span class="lab">ПОДДЕРЖАТЬ</span><span class="cur" aria-hidden="true"></span></a>
-        <a class="it" href="#contacts" data-hint="почта · телеграм · пресса"><span class="lab">КОНТАКТЫ</span><span class="cur" aria-hidden="true"></span></a>
+        <a class="it" href="#contacts" data-hint="почта · телеграм · пресса · вопросы"><span class="lab">КОНТАКТЫ</span><span class="cur" aria-hidden="true"></span></a>
         <div id="msg">&gt; <span id="msg-txt"></span></div>
       </nav>
 
@@ -65,11 +66,45 @@
       </div>
       <h2 class="sec-title"><span class="txt" data-scr>ОБ ИГРЕ</span><span class="cur" aria-hidden="true"></span></h2>
 
+      <!-- трейлер: пока режиссируется, в рамке живёт та же сцена шума, что за меню -->
+      <figure class="trailer">
+        <canvas id="trailer-cv" aria-label="место трейлера"></canvas>
+        <figcaption><span class="t-lab" data-scr>ТРЕЙЛЕР · РЕЖИССИРУЕТСЯ</span><span class="cur" aria-hidden="true"></span></figcaption>
+      </figure>
+
+      <div class="cta-row">
+        <!-- ЗАМЕНИТЕ ссылку телеграма на актуальную -->
+        <a class="cta" href="https://t.me/reobscura" target="_blank" rel="noopener">СЛЕДИТЬ В ТЕЛЕГРАМЕ →</a>
+        <span class="cta soon" aria-disabled="true">ВИШЛИСТ В STEAM · СКОРО</span>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar" data-scr>
+          <div class="p-num">01</div>
+          <div class="p-name">ГОРЯ ПО-ЧЕСТНОМУ</div>
+          <div class="p-text">каждый враг собран из костей: пули бьют по зонам, кровь летит по
+            баллистике и въедается в стены, тела падают физическими рагдоллами и рассекаются
+            по скелету. никаких заготовленных смертей.</div>
+        </div>
+        <div class="pillar" data-scr>
+          <div class="p-num">02</div>
+          <div class="p-name">СВЕТ КАК В КИНО</div>
+          <div class="p-text">тёмные промзоны, штормовые крыши и снег. объёмный туман,
+            непрямой свет и агрессивный контраст — кадр читается как ч/б плёнка, даже
+            когда в нём есть цвет.</div>
+        </div>
+        <div class="pillar" data-scr>
+          <div class="p-num">03</div>
+          <div class="p-name">ОДИН ЧЕЛОВЕК</div>
+          <div class="p-text">код, арт, звук и этот сайт делает один разработчик — медленно,
+            упрямо и до конца. каждый выстрел в игре и каждый пиксель здесь — ручная работа.</div>
+        </div>
+      </div>
+
       <div class="about-grid">
         <div class="about-text">
           <p class="lead" data-scr>интерференция — наложение волн. когда сигналов слишком много, из шума проступает картина. interference — об том, что проступает.</p>
-          <p data-scr>одиночный шутер от первого лица. тёмные промзоны, штормовые крыши и снег; кинематографичный свет, процедурное насилие и город, где каждый выстрел оставляет след — в стене, в теле, в памяти уровня.</p>
-          <p data-scr>каждый враг собран из костей по-настоящему: попадания считаются по зонам, кровь летит по баллистике и въедается в поверхности, тела падают активными рагдоллами и рассекаются по скелету. никаких заранее заготовленных «смертей» — только физика и геометрия.</p>
+          <p data-scr>одиночный шутер от первого лица. город, где каждый выстрел оставляет след — в стене, в теле, в памяти уровня. враги не умирают по скрипту: они спотыкаются, хромают, падают и разбираются на части по-настоящему.</p>
           <p data-scr>игра содержит сцены насилия, жестокости и крови, мерцающие изображения и повторяющиеся визуальные паттерны. 18+.</p>
 
           <dl class="facts">
@@ -93,6 +128,35 @@
         <img src="img/shots/photo_20261017_230445_989.webp" alt="Склад: дымка по глубине кадра" loading="lazy">
         <figcaption data-scr>· кадр из игры · сборка октября · без цветокоррекции</figcaption>
       </figure>
+    </section>
+
+    <section class="sec" id="polygon">
+      <div class="sec-head">
+        <div>
+          <div class="brand">interference</div>
+          <div class="sec-tag">ЧБ-ТЕРМИНАЛ · ПОЛИГОН</div>
+        </div>
+        <div class="sec-right">
+          <div class="t-plus">T+   0.0</div>
+          <a class="to-menu" href="#hero">▲ МЕНЮ</a>
+        </div>
+      </div>
+      <h2 class="sec-title"><span class="txt" data-scr>ПОЛИГОН</span><span class="cur" aria-hidden="true"></span></h2>
+
+      <p class="lead" data-scr>это не видео и не рендер — тот самый полигон из сборки игры, собранный в WebGL. комната, зомби-бродяга и вся труба попаданий: раны по костям, баллистическая кровь, флинчи, рагдоллы и гору. хотите — сайга в упор.</p>
+
+      <div class="poly-stage" id="poly-stage">
+        <div class="poly-cover" id="poly-cover">
+          <button class="cta cta-big" id="poly-launch" type="button">ЗАПУСТИТЬ ПОЛИГОН →</button>
+          <p class="note" data-scr>~150 МБ · собираются в браузере · WebGL · клавиатура не нужна</p>
+        </div>
+      </div>
+      <div class="poly-live" id="poly-live" hidden>
+        <span id="poly-stats">выстрелов 0 · попаданий 0</span>
+        <button class="poly-close" id="poly-close" type="button">■ ОСТАНОВИТЬ</button>
+      </div>
+
+      <div class="poly-legend" data-scr>ЛКМ — выстрел · курсор — прицел · 1/2 — пистолет/сайга · R — ещё враг · на телефоне — тап</div>
     </section>
 
     <section class="sec" id="roadmap">
@@ -213,12 +277,32 @@
           <span class="clab">ITCH.IO</span><span class="cval">reobscura.itch.io</span><span class="cact">ОТКРЫТЬ →</span>
         </a>
       </div>
-      <p class="note" data-scr>для прессы: превью-сборки и материалы — по почте, тема «press · interference».</p>
+
+      <h3 class="sub-h" data-scr>ВОПРОСЫ</h3>
+      <div class="faq">
+        <details class="fq" data-scr><summary>когда выйдет?</summary><p>честный ответ — когда будет готово. сейчас пишется пролог: полный проход и полировка. демо и вишлист в steam — следующий крупный шаг, о нём объявлю в телеграме.</p></details>
+        <details class="fq" data-scr><summary>на каких платформах?</summary><p>linux и android — основные, там игра и крутится каждый день. windows рассмотрю после демо. полигон на этом сайте работает везде, где есть WebGL.</p></details>
+        <details class="fq" data-scr><summary>сколько будет стоить?</summary><p>недорого. это сольный авторский проект, а не сервис: одна цена, без подписок и донатной валюты в игре.</p></details>
+        <details class="fq" data-scr><summary>насколько жестокая игра?</summary><p>настолько, насколько честная физика: расчленение по костям, баллистическая кровь, рагдоллы. 18+, фоточувствительным — осторожно: мерцание и вспышки.</p></details>
+        <details class="fq" data-scr><summary>полигон на сайте — это вся игра?</summary><p>нет, это один полигон из внутренней сборки: статичная камера и одна комната, но системы те же — кровь, зоны, рагдоллы и горя. сама игра — про движение, шторм и город.</p></details>
+        <details class="fq" data-scr><summary>кто делает?</summary><p>один человек — reobscura. код, арт, звук, сайт. если хотите помочь: донаты, репосты и багрепорты в телеграм.</p></details>
+      </div>
+
+      <h3 class="sub-h" data-scr>ПРЕСС-КИТ</h3>
+      <dl class="facts press">
+        <div class="fact" data-scr><dt>НАЗВАНИЕ</dt><dd>interference</dd></div>
+        <div class="fact" data-scr><dt>РАЗРАБОТЧИК</dt><dd>reobscura · соло</dd></div>
+        <div class="fact" data-scr><dt>ЖАНР</dt><dd>одиночный FPS · 18+</dd></div>
+        <div class="fact" data-scr><dt>ДВИЖОК</dt><dd>godot 4.7</dd></div>
+        <div class="fact" data-scr><dt>РЕЛИЗ</dt><dd>TBD · демо после пролога</dd></div>
+        <div class="fact" data-scr><dt>ПРЕСС-ПОЧТА</dt><dd>hello@reobscura.dev · тема «press»</dd></div>
+      </dl>
+      <p class="note" data-scr>ассеты для публикаций: кадры в исходном весе — раздел «медиа» (клик по кадру открывает полноразмерный файл), логотип — favicon-512.png, описание — абзацы выше. превью-сборки для прессы — по письму.</p>
     </section>
 
     <footer>
       <div class="f-line" data-scr>© 2026 reobscura · interference</div>
-      <div class="f-line dim" data-scr>сайт — прямой порт главного меню игры: те же фоновые сцены, золотая спираль и CRT-слои · шрифт DotGothic16</div>
+      <div class="f-line dim" data-scr>сайт — прямой порт главного меню игры: те же фоновые сцены, золотая спираль и CRT-слои · шрифт DotGothic16 · полигон — тот же godot, собранный в webgl</div>
       <div class="f-line dim" data-scr>сайт содержит мерцающие изображения, скан-линии и повторяющиеся паттерны · 18+</div>
       <div class="f-line dim" data-scr>клавиши: ↑ ↓ · enter · [ ] — сцены · 1–7 — выбрать сцену</div>
     </footer>

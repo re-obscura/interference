@@ -706,3 +706,219 @@ footer {
   html { scroll-behavior: auto; }
   .rin, .out { animation: none; }
 }
+
+/* ================= ТРЕЙЛЕР-ЗАГЛУШКА ================= */
+
+.trailer {
+  position: relative;
+  border: 1px solid var(--hair);
+  background: #000;
+  margin-bottom: 22px;
+}
+
+#trailer-cv {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.trailer figcaption {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  font-size: var(--f-tag);
+  letter-spacing: .3em;
+  color: rgba(255, 255, 255, .82);
+  text-shadow: 0 0 6px #000;
+}
+
+.trailer .cur {
+  width: .42em; height: .7em;
+  margin-left: .4em;
+  background: currentColor;
+  position: relative;
+  animation: blink 1.05s steps(1, end) infinite;
+}
+.trailer .cur::before {
+  content: ''; position: absolute; inset: -2px;
+  border: 1px solid rgba(255,255,255,.25);
+}
+
+/* ================= CTA ================= */
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin: 26px 0 clamp(36px, 7vh, 64px);
+}
+
+.cta {
+  display: inline-block;
+  padding: 13px 18px;
+  font-size: clamp(14px, 1.9vh, 19px);
+  letter-spacing: .22em;
+  color: var(--fg);
+  border: 1px solid rgba(255, 255, 255, .35);
+  cursor: pointer;
+  transition: border-color .25s, background .25s;
+  background: none;
+  font-family: inherit;
+}
+.cta:hover { border-color: var(--fg); background: rgba(255, 255, 255, .05); }
+
+.cta.soon {
+  color: var(--dim);
+  border-color: var(--hair);
+  cursor: default;
+}
+.cta.soon:hover { background: none; border-color: var(--hair); }
+
+.cta-big { font-size: clamp(16px, 2.3vh, 24px); padding: 16px 24px; }
+
+/* ================= ОПОРЫ ================= */
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: clamp(36px, 7vh, 72px);
+}
+
+.pillar {
+  border: 1px solid var(--hair);
+  padding: 18px 16px 16px;
+}
+
+.p-num {
+  font-size: var(--f-tag);
+  letter-spacing: .3em;
+  color: var(--dim);
+  margin-bottom: 10px;
+}
+
+.p-name {
+  font-size: clamp(13px, 1.7vh, 17px);
+  letter-spacing: .18em;
+  color: var(--fg);
+  margin-bottom: 10px;
+}
+
+.p-text {
+  font-size: var(--f-log);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, .72);
+}
+
+/* ================= ПОЛИГОН ================= */
+
+.poly-stage {
+  position: relative;
+  border: 1px solid var(--hair);
+  background: #000;
+  aspect-ratio: 16 / 9;
+  max-height: 78vh;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.poly-cover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background:
+    radial-gradient(farthest-corner at 62% 50%, rgba(0,0,0,0) 40%, rgba(0,0,0,.7) 100%),
+    #000;
+}
+
+.poly-cover .note { letter-spacing: .15em; }
+
+.poly-stage iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #000;
+}
+
+.poly-live {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+  font-size: var(--f-log);
+  color: rgba(255, 255, 255, .8);
+  font-variant-numeric: tabular-nums;
+}
+.poly-live[hidden] { display: none; }
+
+.poly-close {
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: var(--f-tag);
+  letter-spacing: .25em;
+  color: var(--dim);
+  cursor: pointer;
+  padding: 8px;
+  transition: color .25s;
+}
+.poly-close:hover { color: var(--fg); }
+
+.poly-legend {
+  font-size: var(--f-tag);
+  letter-spacing: .14em;
+  color: var(--dim);
+}
+
+/* ================= FAQ И ПРЕСС-КИТ ================= */
+
+.sub-h {
+  font-weight: 400;
+  font-size: clamp(15px, 2vh, 20px);
+  letter-spacing: .22em;
+  color: var(--fg);
+  margin: clamp(34px, 6vh, 54px) 0 18px;
+}
+
+.faq { border-top: 1px solid var(--hair); max-width: 860px; }
+
+.fq {
+  border-bottom: 1px solid var(--hair);
+}
+
+.fq summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 13px 2px;
+  font-size: var(--f-log);
+  color: var(--fg);
+  transition: color .2s;
+}
+.fq summary::-webkit-details-marker { display: none; }
+.fq summary::before { content: '· '; color: var(--dim); }
+.fq[open] summary::before { content: '− '; }
+.fq summary:hover { color: #fff; }
+
+.fq p {
+  margin: 0 0 14px;
+  padding-left: 16px;
+  font-size: var(--f-log);
+  color: rgba(255, 255, 255, .72);
+  line-height: 1.7;
+}
+
+.facts.press { max-width: 860px; }
+
+@media (max-width: 900px) {
+  .pillars { grid-template-columns: 1fr; }
+}
