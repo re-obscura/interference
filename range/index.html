@@ -91,15 +91,17 @@
     try {
       status.textContent = 'носитель ………… подключён';
       const bufs = [];
-      let done = 0;
+      let bytesDone = 0;
+      let chunksDone = 0;
       for (const c of CHUNKS) {
         const b = await fetchChunk(c, (got, total) => {
-          const p = (done + got / Math.max(total, 1)) / CHUNKS.length;
+          const p = (chunksDone + got / Math.max(total, 1)) / CHUNKS.length;
           fill.style.width = (p * 100).toFixed(1) + '%';
-          status.textContent = 'погрузка пак ' + (done + got).toLocaleString('ru-RU') + ' байт';
+          status.textContent = 'погрузка пак ' + ((bytesDone + got) / 1048576 | 0) + ' из 145 МБ';
         });
         bufs.push(b);
-        done += 1;
+        bytesDone += b.length;
+        chunksDone += 1;
       }
       fill.style.width = '100%';
       status.textContent = 'самотест памяти …… ОК';
